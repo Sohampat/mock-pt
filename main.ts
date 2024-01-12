@@ -10,15 +10,15 @@ function GenerateTerrain () {
         for (let row = 0; row <= scene.screenHeight() / 8; row++) {
             if (row == Noise - 0) {
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(col, row + 1), img`
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        7 7 7 7 7 7 7 7 
-                                        `)) {
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    7 7 7 7 7 7 7 7 
+                    `)) {
                     for (let i = 0; i <= 9; i++) {
                         tiles.setTileAt(tiles.getTileLocation(col, row - i - 1), assets.tile`transparency16`)
                     }
