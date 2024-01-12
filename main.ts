@@ -2,14 +2,29 @@ namespace SpriteKind {
     export const Block = SpriteKind.create()
 }
 function GenerateTerrain () {
-    NoiseScale = 0.1
+    NoiseScale = 0.12
     Height = 8
     for (let col = 0; col <= scene.screenWidth() / 8; col++) {
         x = (col + seed) * NoiseScale
-        Noise = Math.floor(perlinNoise.noise1d(x) * Height) + 0
+        Noise = Math.floor(perlinNoise.noise1d(x) * Height) + 3
         for (let row = 0; row <= scene.screenHeight() / 8; row++) {
             if (row == Noise - 0) {
-                tiles.setTileAt(tiles.getTileLocation(col, row), grass)
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(col, row + 1), img`
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        7 7 7 7 7 7 7 7 
+                                        `)) {
+                    for (let i = 0; i <= 9; i++) {
+                        tiles.setTileAt(tiles.getTileLocation(col, row - i - 1), assets.tile`transparency16`)
+                    }
+                } else {
+                    tiles.setTileAt(tiles.getTileLocation(col, row), grass)
+                }
             } else if (row > Noise) {
                 tiles.setTileAt(tiles.getTileLocation(col, row), dirt)
             }
