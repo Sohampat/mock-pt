@@ -3,8 +3,6 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "Sprite Grid": "github:microsoft/arcade-grid#v1.3.0",
-        "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
         "perlin-noise": "github:yoxd707/pxt-perlin-noise#880115acf18e7a4fd0d96b40a5d2d7e9c3c2753b"
     },
     "files": [
