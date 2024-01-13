@@ -1,6 +1,11 @@
 namespace SpriteKind {
     export const Block = SpriteKind.create()
 }
+function UnderGroundColumn (Column: number, Row: number) {
+    for (let i = 0; i <= Row; i++) {
+        tiles.setTileAt(tiles.getTileLocation(Column, i + 7), Stone)
+    }
+}
 function doSomething () {
 	
 }
@@ -22,15 +27,19 @@ function GenerateTerrain () {
         DefaultBlockHeight = 2
         ColumBlockHeight = DefaultBlockHeight + randint(-2, 2) * randint(1, Noise)
         PlaceBlockColumn1(index2, ColumBlockHeight)
+        UnderGroundColumn(index2, BlockHeightLimit)
     }
 }
 let ColumBlockHeight = 0
 let DefaultBlockHeight = 0
 let current_tilemap_level: tiles.TileMapData = null
+let Stone: Image = null
 let tree: Image = null
 let dirt: Image = null
 let grass: Image = null
 let Noise = 0
+let BlockHeightLimit = 0
+BlockHeightLimit = 50
 let col = 0
 Noise = 1
 grass = img`
@@ -86,6 +95,24 @@ tree = img`
     . . . . . e e e e e . . . . . . 
     . . . . . e e e e e . . . . . . 
     . . . . . e e e e e . . . . . . 
+    `
+Stone = img`
+    f f d d d d d d d d d d d d f f 
+    f f d d d d f f f f d d d d f f 
+    d d f d d d d d d d d d d f d d 
+    d d d f d d d d d d d d f d d d 
+    d d d d f d d f f d d f d d d d 
+    d d d d d f d d d d f d d d d d 
+    d f d d d d f d d f d d d d f d 
+    d f d d f d d f f d d f d d f d 
+    d f d d f d d f f d d f d d f d 
+    d f d d d d f d d f d d d d f d 
+    d d d d d f d d d d f d d d d d 
+    d d d d f d d f f d d f d d d d 
+    d d d f d d d d d d d d f d d d 
+    d d f d d d d d d d d d d f d d 
+    f f d d d d f f f f d d d d f f 
+    f f d d d d d d d d d d d d f f 
     `
 let row = 7
 GenerateTerrain()
