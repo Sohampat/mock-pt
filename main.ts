@@ -6,7 +6,9 @@ function CreateCave (col: number, row: number) {
     for (let Index2 = 0; Index2 <= range; Index2++) {
         Chance = randint(0, 100)
         if (Chance < 50) {
-            tiles.setTileAt(tiles.getTileLocation(col, row), assets.tile`transparency16`)
+            for (let index = 0; index <= range; index++) {
+                tiles.setTileAt(tiles.getTileLocation(col - index, row - range), assets.tile`transparency16`)
+            }
         }
     }
 }
@@ -16,7 +18,7 @@ function UnderGroundColumn (Column: number, Row: number) {
         if (Math.percentChance(5)) {
             tiles.setTileAt(tiles.getTileLocation(Column, i + 7), Iron)
         }
-        if (Math.percentChance(10)) {
+        if (Math.percentChance(1)) {
             CreateCave(Column, i + 7)
         }
     }
