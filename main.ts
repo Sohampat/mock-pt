@@ -17,6 +17,7 @@ function FillInsideOfCave () {
     for (let index222 = 0; index222 <= 300; index222++) {
         for (let index = 0; index <= BlockHeightLimit; index++) {
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index - 1), assets.tile`transparency16`) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 1), Stone) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), assets.tile`transparency16`) || tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Iron))) {
+                tiles.setTileAt(tiles.getTileLocation(index222, index), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222, index), Lava)
             }
         }
@@ -24,21 +25,27 @@ function FillInsideOfCave () {
     for (let index222 = 0; index222 <= 300; index222++) {
         for (let index = 0; index <= BlockHeightLimit; index++) {
             if (Math.percentChance(50) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Lava)) {
+                tiles.setTileAt(tiles.getTileLocation(index222, index - 1), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222, index - 1), Lava)
             } else if (Math.percentChance(50) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Lava)) {
+                tiles.setTileAt(tiles.getTileLocation(index222, index - 1), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222, index - 1), Stone)
             }
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(index222 + 1, index), Lava) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), assets.tile`transparency16`) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222 - 1, index), Lava) || tiles.tileAtLocationEquals(tiles.getTileLocation(index222 + 1, index), Lava)))) {
+                tiles.setTileAt(tiles.getTileLocation(index222, index), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222, index), Lava)
             }
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index - 1), Lava) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), assets.tile`transparency16`)) {
+                tiles.setTileAt(tiles.getTileLocation(index222, index), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222, index), Lava)
             }
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Lava) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222 + 1, index), assets.tile`transparency16`)) {
+                tiles.setTileAt(tiles.getTileLocation(index222 + 1, index), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222 + 1, index), Lava)
                 console.log("SpecialCase1")
             }
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Lava) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 1), assets.tile`transparency16`)) {
+                tiles.setTileAt(tiles.getTileLocation(index222 + 1, index), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222 + 1, index), Lava)
                 console.log("SpecialCase2")
             }
@@ -48,14 +55,17 @@ function FillInsideOfCave () {
         for (let index = 0; index <= BlockHeightLimit; index++) {
             if (Math.percentChance(50) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Lava)) {
                 tiles.setTileAt(tiles.getTileLocation(index222, index - 1), Stone)
+                tiles.setTileAt(tiles.getTileLocation(index222, index - 1), Stone)
             } else if (Math.percentChance(25) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Lava)) {
+                tiles.setTileAt(tiles.getTileLocation(index222, index - 1), assets.tile`transparency16`)
                 tiles.setTileAt(tiles.getTileLocation(index222, index - 1), Iron)
             }
-            if (Math.percentChance(10) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Stone) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 1), assets.tile`transparency16`) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 2), assets.tile`transparency16`) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 3), assets.tile`transparency16`) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 4), assets.tile`transparency16`)))))) {
-                tiles.setTileAt(tiles.getTileLocation(index222, index + 1), Stalagmites)
-                tiles.setTileAt(tiles.getTileLocation(index222, index + 2), Stalagmites)
-                tiles.setTileAt(tiles.getTileLocation(index222, index + 3), Stalagmites)
-                tiles.setTileAt(tiles.getTileLocation(index222, index + 4), StalagmiteTip)
+            if (Math.percentChance(25) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index), Stone) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 1), assets.tile`transparency16`) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 2), assets.tile`transparency16`) && (tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 3), assets.tile`transparency16`) && tiles.tileAtLocationEquals(tiles.getTileLocation(index222, index + 4), assets.tile`transparency16`)))))) {
+                RandomNumb = randint(2, 3)
+                for (let indexx = 0; indexx <= RandomNumb; indexx++) {
+                    tiles.setTileAt(tiles.getTileLocation(index222, index + indexx), Stalagmites)
+                    tiles.setTileAt(tiles.getTileLocation(index222, index + (RandomNumb + 1)), StalagmiteTip)
+                }
             }
         }
     }
@@ -131,6 +141,7 @@ let ColumBlockHeight = 0
 let DefaultBlockHeight = 0
 let current_tilemap_level: tiles.TileMapData = null
 let currentTile: tiles.Location = null
+let RandomNumb = 0
 let row = 0
 let StalagmiteTip: Image = null
 let Stalagmites: Image = null
